@@ -1,148 +1,137 @@
-// Get All input fields
-const incomeInput = document.getElementById("income-input");
-const foodInput = document.getElementById("food-input");
-const rentInput = document.getElementById("rent-input");
-const clothesInput = document.getElementById("clothes-input");
-const savingInput = document.getElementById("saving-input");
-// Get All buttons
-const btnIncExp = document.getElementById("btn-inc-exp");
-const btnSaving = document.getElementById("btn-saving");
-// Get All Output Displays
-const totalExp = document.getElementById("total-exp");
-const balance = document.getElementById("balance");
-const savingAmount = document.getElementById("saving-amount");
-const remainingBalance = document.getElementById("remaining-balance");
-const errorDisplays = document.getElementsByClassName("error-display");
 
-// Global Vars
-let balanceValue = 0;
-let incomeInputValue = 0;
-const errors = {};
-
-//////////// Calculate Balance with Income and Expenses //////////////
-btnIncExp.addEventListener("click", (e) => {
-  initialActions(e);
-
-  // Validate inputs
-  validateInput(incomeInput, "Income should be a number and greater than 0", 1);
-  validateInput(foodInput, "food cost should be a number");
-  validateInput(rentInput, "food cost should be a number");
-  validateInput(clothesInput, "clothes cost should be a number");
-
-  // return if there is an error
-  if (Object.keys(errors).length > 0) return displayErrorsThenClearErrors();
-
-  // local vars
-  incomeInputValue = parseInt(incomeInput.value);
-  const foodInputValue = parseInt(foodInput.value);
-  const rentInputValue = parseInt(rentInput.value);
-  const clothesInputValue = parseInt(clothesInput.value);
-
-  // Calculate total Expenses
-  const totalExpValue = foodInputValue + rentInputValue + clothesInputValue;
-  // Calculate total Balance
-  balanceValue = incomeInputValue - totalExpValue;
-
-  // return if expenses is greater than income
-  if (totalExpValue > incomeInputValue) {
-    errors[incomeInput.id] = "Income should be greater than total Expenses";
-    return displayErrorsThenClearErrors();
+// check error display
+function errorDisplay(amount, displayId, border, isError) {
+  if (isError == true) {
+      document.getElementById(amount).style.color = 'red';
+      document.getElementById(displayId).style.display = 'block';
+      document.getElementById(border).style.border = '2px solid red';
   }
+  else {
+      document.getElementById(amount).style.color = 'black';
+      document.getElementById(displayId).style.display = 'none';
+      document.getElementById(border).style.border = 'none';
+  }
+};
 
-  // Displaying total expenses on UI
-  totalExp.innerText = totalExpValue.toFixed(2);
-  // Displaying balance on UI
-  balance.innerText = balanceValue.toFixed(2);
+//input error
+function inputError(idName,isTrue){
+  if(isTrue==true){
+      errorDisplay(idName +'-error', idName+'-error', idName, true);
+  }
+  else{
+      errorDisplay(idName +'-error', idName+'-error', idName, false);
+  }
+};
+
+// math error display
+function mathError(displayName,errorId,isTrue){
+  if(isTrue==true){
+  errorDisplay(displayName, errorId +'-error', errorId +'-error', true);
+  }
+  else{
+  errorDisplay(displayName, errorId +'-error', errorId +'-error', false);
+  }
+};
+
+
+// get  input id value
+function getInputValue(inputId) {
+  const inputText = document.getElementById(inputId);
+  const inputNumber = parseFloat(inputText.value);
+  //check string
+  if(isNaN(inputText.value) == true){
+      inputError(inputId,true);
+      document.getElementById(inputId+'-error-type').innerText = 'not acceptable';
+      
+  }
+  //check number
+  else if(isNaN(inputText.value) == false){
+      inputError(inputId,true);
+      document.getElementById(inputId+'-error-type').innerText = 'not nagative value';
+  }
+  //check empty fill
+  if (inputText.value == '') {
+      inputError(inputId,true);
+      mathError('total-expenses','expenses',false);
+      mathError('save-amount','saving', false);
+      document.getElementById(inputId+'-error-type').innerText = 'fill up';
+  }
+  else {
+      //error check
+      if (inputText.value >= 0) {
+          inputError(inputId,false);
+          return inputNumber;
+      }
+      else {
+          inputError(inputId,true);
+          mathError('total-expenses','expenses',false);
+          mathError('save-amount', 'saving', false);
+      }
+  }
+};
+
+// get id innerText value
+function getTextValue(textId) {
+  const text = document.getElementById(textId);
+  const textValue = parseFloat(text.innerText);
+  return textValue;
+};
+
+
+
+//calculate button
+document.getElementById('calculate-button').addEventListener('click', function () {
+  // total expenses
+  const totalExpenses = document.getElementById('total-expenses');
+  const totalExpensesNumber = getInputValue('food-input') + getInputValue('rent-input') + getInputValue('clothes-input');
+  //balance 
+  const balanceAmount = document.getElementById('balance');
+  //income amount
+  const incomeAmount = getInputValue('income-input');
+  //error check
+  if (totalExpensesNumber >= 0 && incomeAmount >= 0) {
+      totalExpenses.innerText = totalExpensesNumber;
+      //error check
+      if (totalExpensesNumber <= incomeAmount) {
+          balanceAmount.innerText = incomeAmount - getTextValue('total-expenses');
+          mathError('total-expenses','expenses',false);
+          mathError('balance','expenses', false);
+      }
+      else {
+          balanceAmount.innerText = '00';
+          mathError('total-expenses','expenses',true);
+      }
+  }
+  else {
+      totalExpenses.innerText = '00';
+      balanceAmount.innerText = '00';
+  }
 });
 
-////////////// Calculate Saving with balance and saving percentage /////////////
-btnSaving.addEventListener("click", (e) => {
-  initialActions(e);
-
-  // validate input
-  validateInput(
-    savingInput,
-    "Saving Percent should be a number, and less than or equal to 100",
-    0,
-    100
-  );
-
-  // validate again in balance is 0 or less
-  if (balanceValue <= 0) {
-    validateInput(savingInput, "You cannot save when your balance is zero");
+//save button 
+document.getElementById('save-button').addEventListener('click', function () {
+  // save amount
+  const saveAmount = document.getElementById('save-amount');
+  const saveAmountNumber = getInputValue('income-input') * (getInputValue('save-input') / 100);
+  // remain amount 
+  const remainAmount = document.getElementById('remain-amount');
+  //error check
+  if (saveAmountNumber >= 0) {
+      saveAmount.innerText = saveAmountNumber;
+      //error check
+      if (getTextValue('save-amount') <= getTextValue('balance')) {
+          remainAmount.innerText = getTextValue('balance') - getTextValue('save-amount');
+          mathError('save-amount','saving',false);
+          mathError('balance', 'saving', false);
+      }
+      else {
+          remainAmount.innerText = '00';
+          mathError('save-amount', 'saving', true);
+          mathError('balance', 'saving', true);
+      }
   }
-
-  // return if there is an error
-  if (Object.keys(errors).length > 0) return displayErrorsThenClearErrors();
-
-  // local vars
-  const savingInputValue = parseInt(savingInput.value);
-
-  // calculating saving
-  const savingPercent = savingInputValue / 100;
-  const savingAmountValue = incomeInputValue * savingPercent;
-
-  // return if saving amount more than the balance you have
-  if (savingAmountValue > balanceValue) {
-    const availableSavingPercent = Math.floor(
-      (balanceValue / incomeInputValue) * 100
-    );
-
-    const errorText = `You cannot save more than ${availableSavingPercent} percent of your income`;
-    errors[savingInput.id] = errorText;
-
-    return displayErrorsThenClearErrors();
+  else if(saveAmountNumber.typeof != 'number'){
+      saveAmount.innerText = '00';
+      remainAmount.innerText = '00';
   }
-
-  // Calculate remaining Balance
-  const remainingBalanceValue = balanceValue - savingAmountValue;
-
-  // Display saving amount on UI
-  savingAmount.innerText = savingAmountValue.toFixed(2);
-  // Display remaining balance amount on UI
-  remainingBalance.innerText = remainingBalanceValue.toFixed(2);
 });
-
-function initialActions(e) {
-  // preventing default behavior
-  e.preventDefault();
-  // clear error displays
-  clearErrorDisplays();
-}
-
-function validateInput(domInput, errorText, min = 0, max = Infinity) {
-  if (
-    isNaN(parseInt(domInput.value)) ||
-    parseInt(domInput.value) < min ||
-    parseInt(domInput.value) > max
-  ) {
-    errors[domInput.id] = errorText;
-  }
-}
-
-function displayErrorsThenClearErrors() {
-  displayErrors();
-  clearErrors();
-}
-
-function clearErrors() {
-  for (const key in errors) {
-    delete errors[key];
-  }
-}
-
-function displayErrors() {
-  for (const err in errors) {
-    const target = document.getElementById(err + "-error");
-    // show error
-    target.classList.remove("hidden");
-    // push error text
-    target.innerText = errors[err];
-  }
-}
-
-function clearErrorDisplays() {
-  for (const ed of errorDisplays) {
-    ed.classList.add("hidden");
-  }
-}

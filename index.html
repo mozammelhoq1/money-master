@@ -1,212 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculate and Save</title>
-    <!-- Tailwind CSS -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings income Calculator</title>
+
+    <!-- tailwind css  -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Local Styles -->
+    <!-- font awesome  -->
+    <script src="https://kit.fontawesome.com/be1bfd8bbb.js" crossorigin="anonymous"></script>
+
+    <!-- google font  poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- vanilla css -->
     <link rel="stylesheet" href="css/style.css">
-  </head>
 
-  <body class="bg-gray-300 p-0 sm:p-10">
-    <div class="container bg-white mx-auto rounded-xl p-4">
-      <!-- Header starts -->
-      <header class="">
-        <h1 class="text-orange-600 text-center font-bold text-4xl mt-4 mb-8">
-          Calculate and Save
-        </h1>
-      </header>
-      <!-- Header ends -->
+</head>
 
-      <!-- Main starts -->
-      <main class="">
-        <div class="grid grid-cols-1 md:grid-cols-2 items-center">
-          <div>
-            <img class="w-full" src="./images/money.jpg" alt="" />
-          </div>
-          <div class="bg-gray-100 p-0 sm:p-3 text-center rounded">
-            <!-- Income and Expense calculation block -->
+<body>
+  <!-- header  -->
+  <header>
+    <h1 class="text-center text-3xl my-5 p-5 font-semibold">Savings Income Calculator </h1>
+  </header>
 
-            <div class="inc-exp p-4">
-              <form action="" class="">
-                <!-- Income block -->
+  <!-- main  -->
+  <main>
+    <!-- money bank section  -->
+    
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
 
-                <div class="income-block">
-                  <h2 class="text-3xl font-semibold mb-4">Income</h2>
-                  <div
-                    class="input-group grid grid-cols-3 justify-items-end items-center"
-                  >
-                    <label for="income-input" class="text-xl mr-2"
-                      >Income:
-                    </label>
-                    <input
-                      id="income-input"
-                      type="text"
-                      class="input outline-0 rounded p-2 w-full col-span-2 focus:shadow-lg focus:shadow-blue-100"
-                    />
-                  </div>
-
-                  <!-- error display -->
-                  <p
-                    id="income-input-error"
-                    class="error-display font-bold text-red-600 hidden"
-                  >
-                    Error
-                  </p>
-                </div>
-
-                <!-- Expense Block -->
-                <div class="expense-block mt-8">
-                  <h2 class="text-3xl font-semibold mb-4">Expense</h2>
-                  <!-- Input Gourp -->
-                  <div
-                    class="input-group grid grid-cols-3 justify-items-end items-center mb-2"
-                  >
-                    <label for="food-input" class="text-xl mr-2">Food: </label>
-                    <input
-                      id="food-input"
-                      type="text"
-                      class="input outline-0 rounded p-2 w-full col-span-2 focus:shadow-lg focus:shadow-blue-100"
-                    />
-                  </div>
-
-                  <!-- error display -->
-                  <p
-                    id="food-input-error"
-                    class="error-display font-bold text-red-600 hidden"
-                  >
-                    Error
-                  </p>
-
-                  <!-- Input Gourp -->
-                  <div
-                    class="input-group grid grid-cols-3 justify-items-end items-center mb-2"
-                  >
-                    <label for="rent-input" class="text-xl mr-2">Rent: </label>
-                    <input
-                      id="rent-input"
-                      type="text"
-                      class="input outline-0 rounded p-2 w-full col-span-2 focus:shadow-lg focus:shadow-blue-100"
-                    />
-                  </div>
-
-                  <!-- error display -->
-                  <p
-                    id="rent-input-error"
-                    class="error-display font-bold text-red-600 hidden"
-                  >
-                    Error
-                  </p>
-
-                  <!-- Input Gourp -->
-                  <div
-                    class="input-group grid grid-cols-3 justify-items-end items-center mb-2"
-                  >
-                    <label for="clothes-input" class="text-xl mr-2"
-                      >Clothes:
-                    </label>
-                    <input
-                      id="clothes-input"
-                      type="text"
-                      class="input outline-0 rounded p-2 w-full col-span-2 focus:shadow-lg focus:shadow-blue-100"
-                    />
-                  </div>
-                  <!-- error display -->
-                  <p
-                    id="clothes-input-error"
-                    class="error-display font-bold text-red-600 hidden"
-                  >
-                    Error
-                  </p>
-                </div>
-
-                <!-- Submit button -->
-                <button
-                  id="btn-inc-exp"
-                  type="submit"
-                  class="my-3 bg-green-500 text-white px-8 py-2 rounded-xl font-bold tracking-wider uppercase w-40"
-                >
-                  Calculate
-                </button>
-              </form>
-
-              <!-- Income Expenses Output -->
-              <div class="inc-exp-output">
-                <h2 class="total-exp-wrapper text-2xl font-semibold my-3">
-                  Total Expenses: <span id="total-exp">0</span>
-                </h2>
-                <h2 class="balance-wrapper text-2xl font-semibold my-3">
-                  Balance: <span id="balance">0</span>
-                </h2>
-              </div>
-            </div>
-
-            <hr class="mb-8" />
-
-            <!-- Money Saving block -->
-            <div class="saving">
-              <form action="" class="">
-                <div class="container flex gap-3 justify-between">
-                  <!-- Input Gourp -->
-                  <div
-                    class="input-group grid grid-cols-2 justify-items-end items-center mb-2"
-                  >
-                    <label for="saving-input" class="text-xl mr-2"
-                      >saving:
-                    </label>
-                    <input
-                      id="saving-input"
-                      type="text"
-                      class="input outline-0 rounded p-2 w-full focus:shadow-lg focus:shadow-blue-100"
-                    />
-                  </div>
-                  <div class="self-center">%</div>
-
-                  <!-- Submit button -->
-                  <button
-                    id="btn-saving"
-                    type="submit"
-                    class="bg-green-500 text-white px-8 py-2 rounded-xl font-semibold tracking-wider uppercase w-60"
-                  >
-                    Save
-                  </button>
-                </div>
-
-                <!-- error display -->
-                <p
-                  id="saving-input-error"
-                  class="error-display font-bold text-red-600 hidden"
-                >
-                  Error
-                </p>
-              </form>
-
-              <!-- Saving Output -->
-              <div class="saving-output">
-                <h2 class="saving-amount-wrapper text-2xl font-semibold my-3">
-                  Saving Amount: <span id="saving-amount">0</span>
-                </h2>
-                <h2
-                  class="remaining-balance-wrapper text-2xl font-semibold my-3"
-                >
-                  Remaining Balance: <span id="remaining-balance">0</span>
-                </h2>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-      <!-- Main ends -->
-
-      <!-- Footer starts -->
-      <footer></footer>
-      <!-- Footer ends -->
+    <!-- image section  -->
+    <div class="image-section">
+      <img class="shadow-2xl" src="images/money-master.png" alt="Money calculation">
     </div>
 
-    <!-- All Scripts -->
+    <!-- money calculation section  -->
+    <section class="calculator-section px-5 text-center shadow-2xl">
+    <!-- income section -->
+      <section>
+        <!-- income input -->
+        <div class="income-section sm:w-11/12">
+          <h2 class="text-lg text-center font-semibold mt-10 mb-3">Income</h2>
+          <div>
+            <div class="grid grid-cols-3 items-baseline">
+              <p class="text-right">Income :</p>
+              <input id="income-input" class="col-span-2 shadow" type="text" name="" placeholder="$00">
+            </div>
+            <p id="income-input-error" class="text-xs rounded p-1 bg-gray-200 hidden">income value is <span id="income-input-error-type">not acceptable </span> </p>
+          </div>
+        </div>
+
+        <!-- expenses input  -->
+        <div class="expenses sm:w-11/12">
+          <h2 class="text-lg text-center font-semibold mt-3 mb-3">Expenses</h2>
+
+          <div>
+            <div class="grid grid-cols-3 justify-center items-baseline">
+              <p class="text-right">Food :</p>
+              <input id="food-input" class="col-span-2 shadow" type="text" name="" placeholder="$00">
+            </div>
+            <p id="food-input-error" class="text-xs rounded p-1 bg-gray-200 hidden">Food value is <span id="food-input-error-type">not acceptable </span> </p>
+          </div>
+
+          <div>
+            <div class="grid grid-cols-3 justify-center items-baseline">
+              <p class="text-right">Rent :</p>
+              <input id="rent-input" class="col-span-2 shadow" type="text" name="" placeholder="$00">
+            </div>
+            <p id="rent-input-error" class="text-xs rounded p-1 bg-gray-200 hidden">Rent value is <span id="rent-input-error-type">not acceptable </span> </p>
+          </div>
+
+          <div>
+            <div class="grid grid-cols-3 justify-center items-baseline">
+              <p class="text-right">Clothes :</p>
+              <input id="clothes-input" class="col-span-2 shadow" type="text" name="" placeholder="$00">
+            </div>
+            <p id="clothes-input-error" class="text-xs rounded p-1 bg-gray-200 hidden">Clothes value is <span id="clothes-input-error-type">not acceptable </span></p>
+            </div>
+          </div>
+
+          <button id="calculate-button" class="font-bold shadow-lg mt-8 mb-2">Calculate</button>
+
+          <!-- expenses result  -->
+          <div class="mb-5">
+            <h2 class="text-lg text-center font-semibold mt-4 mb-2">Total Expenses: <span id="total-expenses">00</span></h2>
+
+          <!-- expenses error -->
+            <h2 id="expenses-error" class="text-white font-bold my-3 mx-10 bg-red-600 rounded p-2 hidden">Your Total Expenses are more than your Income</h2>
+
+            <h2 class="text-lg text-center font-semibold">Balance: <span id="balance">00</span></h2>
+          </div>
+      </section>
+
+      <!-- saving section -->
+      <section>
+                    <!-- saving input  -->
+        <div>
+          <div class="save-section flex justify-center items-baseline">
+            <p class="text-right">Save:</p>
+            <input class="w-3/4 sm:w-30 text-center shadow" id="save-input" type="text" name="" placeholder="0">
+            <p class="mx-1 font-bold">%</p>
+            <button id="save-button" class="bg-blue-500 hover:bg-blue-700 px-10 py-1 rounded-lg text-white">Save</button>
+          </div>
+          <p id="save-input-error" class="text-xs rounded p-1 bg-gray-200 hidden">Save value is <span id="save-input-error-type">not acceptable </span>
+          </p>
+        </div>
+                    <!-- saving result  -->
+        <div class="mb-5">
+          <h2 class="text-lg text-center font-semibold mt-4 mb-2">Saving Amount: <span id="save-amount">00</span></h2>
+
+                        <!-- saving error -->
+          <h2 id="saving-error" class="text-white font-bold my-3 mx-10 bg-red-600 rounded p-2 hidden">You Can't saving your Money</h2>
+
+          <h2 class="text-lg text-center font-semibold mb-4">Remaining Balance: <span id="remain-amount">00</span></h2>
+        </div>
+      </section>
+    </section>
+  </section>
+  </main>
+
+
+    <!-- javascript app  -->
     <script src="js/app.js"></script>
-  </body>
+
+</body>
+
 </html>

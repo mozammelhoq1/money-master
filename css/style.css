@@ -1,13 +1,62 @@
-/* body {
-  padding: 0;
-  margin: 0;
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: white;
 }
-.input-style {
-  border: none;
-  background-color: rgb(216, 214, 214);
+
+/* header  */
+header h1 {
+  color: #31a5ac;
+}
+main {
+  width: 92%;
+  margin: 0 auto;
+}
+
+/* image section  */
+.image-section img {
+  border-radius: 10px;
+  height: 100%;
+}
+
+/* calculator section  */
+.calculator-section {
+  background-color: #f8f8f8;
+  border-radius: 10px;
+}
+
+.calculator-section p {
+  font-size: 16px;
+  margin: 10px;
+}
+.calculator-section input {
+  padding: 5px;
+  background: #dcdcdc;
   border-radius: 5px;
+  margin: 10px;
+}
+
+/* .calculator-section button {
+  color: #ffffff;
+  padding: 10px 30px;
+  border: 2px solid #ff3e03;
+  background: #ff3e03;
+  border-radius: 5px;
+}
+.calculator-section button:hover {
+  color: #ff3e03;
+  background-color: #ffffff00;
 } */
 
-.error-display {
-  margin-bottom: 15px;
+/* save section  */
+
+/* .save-section button {
+  color: #ffffff;
+  padding: 10px 20px;
+  border: 2px solid #ff3e03;
+  background: #ff3e03;
+  border-radius: 5px;
 }
+.save-section button:hover {
+  color: #ff3e03;
+  background-color: #ffffff00;
+} */
