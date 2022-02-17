@@ -32,7 +32,7 @@ document.getElementById('save-button').addEventListener('click', function () {
   // save amount
   const saveAmount = document.getElementById('save-amount');
   const saveAmountNumber = getInputValue('income-input') * (getInputValue('save-input') / 100);
-  // remain amount 
+    // remain amount 
   const remainAmount = document.getElementById('remain-amount');
   //error check
   if (saveAmountNumber >= 0) {
@@ -125,6 +125,8 @@ function getInputValue(inputId) {
           mathError('save-amount', 'saving', false);
       }
   }
+  inputText.value="";
+  return getInputValue;
 };
 
 // get id innerText value
