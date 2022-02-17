@@ -26,7 +26,6 @@ main {
 
 .calculator-section p {
   font-size: 16px;
-  margin: 10px;
 }
 .calculator-section input {
   padding: 5px;
@@ -34,29 +33,3 @@ main {
   border-radius: 5px;
   margin: 10px;
 }
-
-/* .calculator-section button {
-  color: #ffffff;
-  padding: 10px 30px;
-  border: 2px solid #ff3e03;
-  background: #ff3e03;
-  border-radius: 5px;
-}
-.calculator-section button:hover {
-  color: #ff3e03;
-  background-color: #ffffff00;
-} */
-
-/* save section  */
-
-/* .save-section button {
-  color: #ffffff;
-  padding: 10px 20px;
-  border: 2px solid #ff3e03;
-  background: #ff3e03;
-  border-radius: 5px;
-}
-.save-section button:hover {
-  color: #ff3e03;
-  background-color: #ffffff00;
-} */

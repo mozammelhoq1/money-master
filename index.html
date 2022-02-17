@@ -85,16 +85,16 @@
             </div>
           </div>
 
-          <button id="calculate-button" class="font-bold shadow-lg mt-8 mb-2">Calculate</button>
+          <button id="calculate-button" class="bg-blue-500 hover:bg-blue-700 px-10 py-1 rounded-lg text-white my-5">Calculate</button>
 
           <!-- expenses result  -->
           <div class="mb-5">
-            <h2 class="text-lg text-center font-semibold mt-4 mb-2">Total Expenses: <span id="total-expenses">00</span></h2>
+            <h2 class="text-lg text-center font-semibold mt-4 mb-2">Total Expenses: $ <span id="total-expenses">00</span></h2>
 
           <!-- expenses error -->
             <h2 id="expenses-error" class="text-white font-bold my-3 mx-10 bg-red-600 rounded p-2 hidden">Your Total Expenses are more than your Income</h2>
 
-            <h2 class="text-lg text-center font-semibold">Balance: <span id="balance">00</span></h2>
+            <h2 class="text-lg text-center font-semibold">Balance: $ <span id="balance">00</span></h2>
           </div>
       </section>
 
@@ -104,7 +104,7 @@
         <div>
           <div class="save-section flex justify-center items-baseline">
             <p class="text-right">Save:</p>
-            <input class="w-3/4 sm:w-30 text-center shadow" id="save-input" type="text" name="" placeholder="0">
+            <input class="w-3/4 sm:w-30 text-center shadow" id="save-input" type="text" name="" placeholder="$00">
             <p class="mx-1 font-bold">%</p>
             <button id="save-button" class="bg-blue-500 hover:bg-blue-700 px-10 py-1 rounded-lg text-white">Save</button>
           </div>
@@ -113,12 +113,12 @@
         </div>
                     <!-- saving result  -->
         <div class="mb-5">
-          <h2 class="text-lg text-center font-semibold mt-4 mb-2">Saving Amount: <span id="save-amount">00</span></h2>
+          <h2 class="text-lg text-center font-semibold mt-4 mb-2">Saving Amount: $ <span id="save-amount">00</span></h2>
 
                         <!-- saving error -->
           <h2 id="saving-error" class="text-white font-bold my-3 mx-10 bg-red-600 rounded p-2 hidden">You Can't saving your Money</h2>
 
-          <h2 class="text-lg text-center font-semibold mb-4">Remaining Balance: <span id="remain-amount">00</span></h2>
+          <h2 class="text-lg text-center font-semibold mb-4">Remaining Balance: $ <span id="remain-amount">00</span></h2>
         </div>
       </section>
     </section>
