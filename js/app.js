@@ -37,6 +37,7 @@ function mathError(displayName,errorId,isTrue){
 function getInputValue(inputId) {
   const inputText = document.getElementById(inputId);
   const inputNumber = parseFloat(inputText.value);
+  console.table(inputText)
   //check string
   if(isNaN(inputText.value) == true){
       inputError(inputId,true);
